@@ -52,5 +52,23 @@ const useStyles = makeStyles({
 			fontSize: "14px",
 			boxShadow: "0px 8px 15px rgba(0, 0, 0, 0.2)",
 		},
+		"@media(max-width: 480px)": {
+			padding: "25px 20px",
+			"@media(max-width: 320px)": {
+				padding: "25px 15px",
+			},
+			"& img": {
+				width: "30px",
+				height: "30px",
+				marginRight: "10px",
+			},
+			"& h1": {
+				fontSize: "20px",
+			},
+			"& a": {
+				padding: "10px 15px",
+				fontSize: "12px",
+			},
+		},
 	},
 });

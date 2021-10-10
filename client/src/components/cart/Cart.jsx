@@ -30,7 +30,7 @@ const Cart = () => {
 						return (
 							<div key={product.id}>
 								<div className={classes.infoContainer}>
-									<p>
+									<p className={classes.productName}>
 										{product.name}
 										<span
 											className={classes.deleteButton}
@@ -109,6 +109,9 @@ const useStyles = makeStyles({
 		display: "flex",
 		flexDirection: "column",
 		padding: "30px",
+		"@media(max-width: 480px)": {
+			padding: "15px",
+		},
 	},
 	titleContainer: {
 		display: "flex",
@@ -152,6 +155,12 @@ const useStyles = makeStyles({
 					color: "#36d982",
 				},
 			},
+		},
+		"@media(max-width: 480px)": {
+			padding: "5px 0",
+			margin: "0px 0 10px 0",
+			display: "flex",
+			alignItems: "center",
 		},
 	},
 	deleteButton: {
@@ -211,6 +220,48 @@ const useStyles = makeStyles({
 			"& a": {
 				textDecoration: "none",
 				color: "inherit",
+			},
+		},
+		"@media(max-width: 480px)": {
+			height: "auto",
+			flexDirection: "column-reverse",
+			justifyContent: "center",
+			width: "100%",
+			padding: "0 15px",
+			"& button": {
+				padding: "20px 80px",
+				width: "100%",
+				"&:first-child": {
+					padding: "10px",
+					background: "transparent",
+					border: "2px solid #e67ad0",
+				},
+				"&:last-child": {
+					margin: "10px  0 !important",
+				},
+				"& a": {
+					width: "100%",
+					textDecoration: "none",
+					color: "inherit",
+				},
+			},
+			"& a": {
+				width: "100%",
+				"& button": {
+					width: "100%",
+				},
+			},
+		},
+	},
+	productName: {
+		display: "flex",
+		flexDirection: "row-reverse",
+		justifyContent: "flex-end",
+		alignItems: "center",
+		"@media(max-width: 480px)": {
+			fontSize: "14px",
+			"& span": {
+				paddingLeft: "0px",
 			},
 		},
 	},

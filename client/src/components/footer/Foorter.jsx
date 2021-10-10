@@ -68,5 +68,25 @@ const useStyles = makeStyles({
 				},
 			},
 		},
+		"@media(max-width: 480px)": {
+			height: "140px",
+			padding: "0 20px",
+			"& button": {
+				padding: "8px 15px",
+				marginRight: "20px",
+			},
+			"& div": {
+				width: "100%",
+			},
+		},
+		"@media(max-width: 320px)": {
+			padding: "0 15px",
+			"& button": {
+				fontSize: "12px",
+			},
+			"& div": {
+				fontSize: "14px",
+			},
+		},
 	},
 });

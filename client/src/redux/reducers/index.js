@@ -6,9 +6,9 @@ import {
 } from "./../constants";
 
 const initialState = {
-	products: [], // {id, title, descr, price ,stock, img, totalStock}
-	cart: [], // {id, title, descr, price ,stock, img , qty, totalStock}
-	history: [],
+	products: [], // {id, title, descr, price ,stock, img, totalStock, rating}
+	cart: [], // {id, title, descr, price ,stock, img , qty, totalStock, rating}
+	history: [], // array de arrays cart [ [ {productos} ] ]
 };
 
 const Reducer = (state = initialState, action) => {
@@ -21,7 +21,6 @@ const Reducer = (state = initialState, action) => {
 		case ADD_TO_CART: {
 			const item = state.products.find((product) => product.id === action.payload.id);
 			const inCart = state.cart.find((item) => (item.id === action.payload.id ? true : false));
-
 			return {
 				...state,
 				cart: inCart

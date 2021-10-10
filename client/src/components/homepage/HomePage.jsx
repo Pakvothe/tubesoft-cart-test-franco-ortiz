@@ -32,17 +32,19 @@ export default HomePage;
 
 const useStyles = makeStyles({
 	container: {
-		height: "100vh",
 		display: "flex",
 		flexDirection: "column",
 		justifyContent: "space-between",
 		backgroundColor: "#fafafa",
 	},
 	cardList: {
-		height: "100%",
 		display: "flex",
 		flexWrap: "wrap",
 		justifyContent: "space-evenly",
 		padding: "30px 0",
+		margin: "auto 0",
+		"@media(max-width: 480px)": {
+			padding: "15px 0",
+		},
 	},
 });

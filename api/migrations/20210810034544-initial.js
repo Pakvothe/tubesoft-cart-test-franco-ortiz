@@ -55,6 +55,11 @@ const migrationCommands = (transaction) => {
 						//TODO: validar que sea mayor o igual a 0
 						field: "totalStock",
 					},
+					rating: {
+						type: Sequelize.INTEGER,
+						//TODO: validar que sea mayor o igual a 1
+						field: "rating",
+					},
 					createdAt: {
 						type: Sequelize.DATE,
 						field: "createdAt",
