@@ -33,36 +33,42 @@ const ProductCard = ({ props }) => {
 		});
 	};
 	return (
-		<div className={classes.Container}>
-			<img src={img} alt={`${id} cardImage`} className={classes.CardImage} />
-			<div className={classes.ProductInfo}>
-				<h3>{name}</h3>
-				<div className={classes.starContainer}>{starSetter()}</div>
-				<div>
-					<p className={classes.priceText}>$ {price}</p>
-					{stock > 0 ? (
-						<label className={classes.succedLabel}>
-							<label />
-							<p>stock</p>
-						</label>
-					) : (
-						<label className={classes.errorLabel}>
-							<label />
-							<p>out of stock</p>
-						</label>
-					)}
+		<div className={stock === 0 && classes.Opacity}>
+			<div className={classes.Container}>
+				<img src={img} alt={`${id} cardImage`} className={classes.CardImage} />
+				<div className={classes.ProductInfo}>
+					<h3>{name}</h3>
+					<div className={classes.starContainer}>{starSetter()}</div>
+					<div>
+						<p className={classes.priceText}>$ {price}</p>
+						{stock > 0 ? (
+							<label className={classes.succedLabel}>
+								<label />
+								<p>stock</p>
+							</label>
+						) : (
+							<label className={classes.errorLabel}>
+								<label />
+								<p>out of stock</p>
+							</label>
+						)}
+					</div>
 				</div>
+				{stock === totalStock && stock > 0 ? (
+					<button className={classes.buttonAdd} onClick={() => addProductToCart(id)}>
+						Add to cart
+					</button>
+				) : (
+					stock === totalStock && (
+						<button className={classes.buttonNoStock}>Out of stock</button>
+					)
+				)}
+				{totalStock > stock && (
+					<button className={classes.buttonGoTo} onClick={() => history.push("/cart")}>
+						In cart
+					</button>
+				)}
 			</div>
-			{stock === totalStock && (
-				<button className={classes.buttonAdd} onClick={() => addProductToCart(id)}>
-					Add to cart
-				</button>
-			)}
-			{totalStock > stock && (
-				<button className={classes.buttonGoTo} onClick={() => history.push("/cart")}>
-					In cart
-				</button>
-			)}
 		</div>
 	);
 };
@@ -70,6 +76,9 @@ const ProductCard = ({ props }) => {
 export default ProductCard;
 
 const useStyles = makeStyles({
+	Opacity: {
+		opacity: "0.7 !important",
+	},
 	Container: {
 		height: "350px",
 		width: "250px",
@@ -162,6 +171,22 @@ const useStyles = makeStyles({
 		justifyContent: "center",
 		border: "none",
 		outline: "2px solid #e67ad0",
+		outlineOffset: "-2px",
+		fontSize: "14px",
+		fontWeight: "600",
+		textTransform: "uppercase",
+	},
+	buttonNoStock: {
+		cursor: "pointer",
+		color: "#7C7B7C",
+		width: "100%",
+		display: "flex",
+		padding: "14px 0",
+		background: "transparent",
+		alignItems: "center",
+		justifyContent: "center",
+		border: "none",
+		outline: "2px solid #7C7B7C",
 		outlineOffset: "-2px",
 		fontSize: "14px",
 		fontWeight: "600",

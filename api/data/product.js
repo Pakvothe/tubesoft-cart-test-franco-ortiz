@@ -22,8 +22,8 @@ const products = [
 		name: "Cyberpunk 2077",
 		price: 2199.0,
 		img: "https://s1.gaming-cdn.com/images/products/840/orig/cyberpunk-2077-cover.jpg",
-		stock: 2001,
-		totalStock: 2001,
+		stock: 0,
+		totalStock: 0,
 		rating: 2,
 	},
 	{

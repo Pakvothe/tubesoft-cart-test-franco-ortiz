@@ -11,7 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 const App = () => {
 	return (
 		<>
-			<ToastContainer />
+			<ToastContainer limit={3} />
 
 			<Route exact path="/">
 				<HomePage />
