@@ -1,17 +1,109 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@mui/styles";
 import Navbar from "../navbar";
-import { Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, removeFromCart, removeOneFromCart } from "../../redux/actions";
+import {
+	addToCart,
+	removeFromCart,
+	removeOneFromCart,
+	emptyCart,
+	getAllProduct,
+} from "../../redux/actions";
+import { toast } from "react-toastify";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+import axios from "axios";
 
 const Cart = () => {
 	const dispatch = useDispatch();
 	const classes = useStyles();
+	const history = useHistory();
+	const MySwal = withReactContent(Swal);
 	const cart = useSelector((state) => state.cart);
 	const products = useSelector((state) => state.products);
+	const [date, setDate] = useState("");
+
 	let total = 0;
 	cart.forEach((prod) => (total = prod.price * prod.qty + total));
+
+	useEffect(() => {
+		let today = new Date();
+		let todayDate = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+		let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+		setDate(todayDate + " " + time);
+	}, []);
+
+	const saveHistory = (createDate) => {
+		axios
+			.post("http://localhost:3001/carts", { cartProducts: cart, createDate })
+			.then((data) => {
+				dispatch(emptyCart());
+				dispatch(getAllProduct());
+				toast.success("The cart was saved successfully!", {
+					position: "top-center",
+					autoClose: 5000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+				});
+				history.push("/history");
+			})
+			.catch((err) =>
+				toast.error("Error, try again!", {
+					position: "top-center",
+					autoClose: 5000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+				})
+			);
+	};
+
+	const handleDelete = (id) => {
+		MySwal.fire({
+			title: "Are you sure?",
+			text: "The product will be removed from the cart!",
+			icon: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#36d982",
+			iconColor: "#e67ad0",
+			cancelButtonColor: "#d33",
+			confirmButtonText: "Yes, remove it!",
+		}).then((result) => {
+			if (result.isConfirmed) {
+				dispatch(removeFromCart(id));
+				toast.success("The product was removed from the cart!", {
+					position: "top-center",
+					autoClose: 5000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+				});
+			}
+		});
+	};
+	const handleProcced = () => {
+		if (cart.length > 0) {
+			saveHistory(date);
+		} else {
+			toast.error("Error, the cart is empty!", {
+				position: "top-center",
+				autoClose: 5000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+			});
+		}
+	};
 
 	return (
 		<div className={classes.Container}>
@@ -34,7 +126,7 @@ const Cart = () => {
 										{product.name}
 										<span
 											className={classes.deleteButton}
-											onClick={() => dispatch(removeFromCart(product.id))}
+											onClick={() => handleDelete(product.id)}
 										>
 											ⓧ
 										</span>
@@ -78,9 +170,9 @@ const Cart = () => {
 					<button>Back to shopping</button>
 				</Link>
 				<Link to="/history">
-					<button>Cart Historial</button>
+					<button>Cart History</button>
 				</Link>
-				<button>Procced</button>
+				<button onClick={() => handleProcced()}>Procced</button>
 			</div>
 		</div>
 	);
@@ -90,7 +182,7 @@ export default Cart;
 
 const useStyles = makeStyles({
 	Container: {
-		height: "100vh",
+		minHeight: "100vh",
 		display: "flex",
 		flexDirection: "column",
 		alignItems: "center",
@@ -106,6 +198,7 @@ const useStyles = makeStyles({
 	cartContainer: {
 		height: "100%",
 		width: "100%",
+		flex: "1",
 		display: "flex",
 		flexDirection: "column",
 		padding: "30px",

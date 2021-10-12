@@ -3,6 +3,10 @@ import {
 	ADD_TO_CART,
 	REMOVE_FROM_CART,
 	REMOVE_ONE_FROM_CART,
+	EMPTY_CART,
+	GET_LIST,
+	SET_SAVED_CART,
+	REMOVE_FROM_HISTORY,
 } from "./../constants";
 
 const initialState = {
@@ -17,6 +21,11 @@ const Reducer = (state = initialState, action) => {
 			return {
 				...state,
 				products: action.payload,
+			};
+		case GET_LIST:
+			return {
+				...state,
+				history: [...action.payload],
 			};
 		case ADD_TO_CART: {
 			const item = state.products.find((product) => product.id === action.payload.id);
@@ -53,6 +62,12 @@ const Reducer = (state = initialState, action) => {
 				cart: state.cart.filter((item) => item.id !== action.payload.id),
 			};
 		}
+		case EMPTY_CART: {
+			return {
+				...state,
+				cart: [],
+			};
+		}
 		case REMOVE_ONE_FROM_CART: {
 			return {
 				...state,
@@ -67,6 +82,29 @@ const Reducer = (state = initialState, action) => {
 				cart: state.cart.map((item) =>
 					item.id === action.payload.id ? { ...item, qty: item.qty - 1 } : item
 				),
+			};
+		}
+		case SET_SAVED_CART: {
+			const modProductArray = [];
+			state.products.forEach((element) => {
+				const temp = element;
+				action.payload.forEach((item) => {
+					if (element.id === item.id) {
+						temp.stock = temp.stock - 1;
+					}
+				});
+				modProductArray.push(temp);
+			});
+			return {
+				...state,
+				cart: [...action.payload],
+				products: modProductArray,
+			};
+		}
+		case REMOVE_FROM_HISTORY: {
+			return {
+				...state,
+				history: state.history.filter((item) => item.id !== action.payload.id),
 			};
 		}
 		default:

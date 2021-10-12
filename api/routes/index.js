@@ -9,5 +9,7 @@ router.get("/", function (req, res) {
 });
 router.get("/products", controllers.Products.list);
 router.get("/carts", controllers.Carts.list);
+router.post("/carts", controllers.Carts.post);
+router.delete("/carts/:id", controllers.Carts.delete);
 
 module.exports = router;

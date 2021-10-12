@@ -1,4 +1,5 @@
 const Sequelize = require("sequelize");
+const { sequelize } = require("../models");
 
 /**
  * Actions summary:
@@ -90,9 +91,14 @@ const migrationCommands = (transaction) => {
 						primaryKey: true,
 						allowNull: false,
 					},
-					total: {
-						type: Sequelize.INTEGER,
-						field: "total",
+					cartProducts: {
+						type: Sequelize.ARRAY(Sequelize.JSON),
+						field: "cartProducts",
+						allowNull: false,
+					},
+					createDate: {
+						type: Sequelize.STRING,
+						field: "createDate",
 						allowNull: false,
 					},
 					createdAt: {
@@ -104,41 +110,6 @@ const migrationCommands = (transaction) => {
 						type: Sequelize.DATE,
 						field: "updatedAt",
 						allowNull: false,
-					},
-				},
-				{ transaction },
-			],
-		},
-		{
-			fn: "createTable",
-			params: [
-				"Prod_Cart",
-				{
-					createdAt: {
-						type: Sequelize.DATE,
-						field: "createdAt",
-						allowNull: false,
-					},
-					updatedAt: {
-						type: Sequelize.DATE,
-						field: "updatedAt",
-						allowNull: false,
-					},
-					ProductId: {
-						type: Sequelize.INTEGER,
-						field: "ProductId",
-						onUpdate: "CASCADE",
-						onDelete: "CASCADE",
-						references: { model: "Products", key: "id" },
-						primaryKey: true,
-					},
-					CartId: {
-						type: Sequelize.INTEGER,
-						field: "CartId",
-						onUpdate: "CASCADE",
-						onDelete: "CASCADE",
-						references: { model: "Carts", key: "id" },
-						primaryKey: true,
 					},
 				},
 				{ transaction },
@@ -156,10 +127,6 @@ const rollbackCommands = (transaction) => {
 		{
 			fn: "dropTable",
 			params: ["Carts", { transaction }],
-		},
-		{
-			fn: "dropTable",
-			params: ["Prod_Cart", { transaction }],
 		},
 	];
 };

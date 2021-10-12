@@ -9,14 +9,15 @@ module.exports = (sequelize, DataTypes) => {
 		 */
 		static associate(models) {
 			// define association here
-			Cart.belongsToMany(models.Product, { through: "Prod_Cart" });
 		}
 	}
 	Cart.init(
 		{
-			total: {
-				type: DataTypes.INTEGER,
-				allowNull: false,
+			cartProducts: {
+				type: DataTypes.ARRAY(DataTypes.JSON),
+			},
+			createDate: {
+				type: DataTypes.STRING,
 			},
 		},
 		{

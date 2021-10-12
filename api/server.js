@@ -5,11 +5,8 @@ const routes = require("./routes/index");
 
 const server = express();
 
-/**
- * SETUP GENERAL
- */
-
-server.use(morgan("dev")); //para logear a la terminal
+server.use(express.json());
+server.use(morgan("dev"));
 server.use((req, res, next) => {
 	res.header("Access-Control-Allow-Origin", "*");
 	res.header("Access-Control-Allow-Credentials", "true");

@@ -2,40 +2,11 @@
 
 const { Cart, Product, Prod_Cart } = require("../models/index");
 
-exports.get = (req, res, next) => {
-	let { id } = req.params;
-	if (!id) return res.status(404).send("The cart was not found");
-	Cart.findByPk(id)
-		.then((a) => {
-			return res.status(200).send(a);
-		})
-		.catch((error) => {
-			console.log(error);
-			return res.status(304).send(error);
-		});
-};
-
-exports.put = (req, res, next) => {
-	let cart = req.body;
-	let { id } = req.params;
-
-	if (!id) return res.status(400).send("The cart was not found");
-	Cart.update(cart, { where: { id } }).then(() => {
-		return res.status(200).send("The cart was updated");
-	});
-};
-
-exports.post = (req, res, next) => {
-	let { cartId, productId, total } = req.params;
-
-	if (!cartId || !productId) return res.status(400).send("The cart was not added correctly");
-	Product.findByPk(productId).then(() => {
-		Cart.create({
-			total,
-		}).then((a) => {
-			return res.send({ msg: "The cart was created" });
-		});
-	});
+exports.post = (req, res) => {
+	const { cartProducts, createDate } = req.body;
+	Cart.create({ cartProducts, createDate })
+		.then((result) => res.status(201).send("Cart saved succesfully"))
+		.catch((err) => res.send(err));
 };
 
 exports.list = (req, res, next) => {

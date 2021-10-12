@@ -4,5 +4,5 @@ const { conn } = require("./models/index");
 var port = process.env.PORT || 3001;
 
 server.listen(port, function () {
-	console.log(`app running on port ${port}`);
+	console.log(`Server running on port ${port}`);
 });

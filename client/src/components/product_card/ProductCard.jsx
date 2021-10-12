@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/actions";
 import { useHistory } from "react-router";
 import StarSvg from "../../assets/star.svg";
+import { toast } from "react-toastify";
 
 const ProductCard = ({ props }) => {
 	const { id, name, img, price, stock, totalStock, rating } = props;
@@ -14,11 +15,23 @@ const ProductCard = ({ props }) => {
 	const starSetter = () => {
 		let stars = [];
 		for (let i = 0; i < rating; i++) {
-			stars.push(<img src={StarSvg} alt="star" />);
+			stars.push(<img src={StarSvg} alt="star" key={id + i} />);
 		}
 		return stars;
 	};
 
+	const addProductToCart = (id) => {
+		dispatch(addToCart(id));
+		toast.success("Product added to shopping cart successfully!", {
+			position: "top-center",
+			autoClose: 5000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+		});
+	};
 	return (
 		<div className={classes.Container}>
 			<img src={img} alt={`${id} cardImage`} className={classes.CardImage} />
@@ -41,7 +54,7 @@ const ProductCard = ({ props }) => {
 				</div>
 			</div>
 			{stock === totalStock && (
-				<button className={classes.buttonAdd} onClick={() => dispatch(addToCart(id))}>
+				<button className={classes.buttonAdd} onClick={() => addProductToCart(id)}>
 					Add to cart
 				</button>
 			)}
@@ -69,6 +82,7 @@ const useStyles = makeStyles({
 	CardImage: {
 		width: "100%",
 		height: "50%",
+		objectFit: "fill",
 	},
 	ProductInfo: {
 		display: "flex",

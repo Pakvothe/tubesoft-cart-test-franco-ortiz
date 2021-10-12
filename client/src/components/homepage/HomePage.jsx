@@ -32,12 +32,14 @@ export default HomePage;
 
 const useStyles = makeStyles({
 	container: {
+		minHeight: "100vh",
 		display: "flex",
 		flexDirection: "column",
 		justifyContent: "space-between",
 		backgroundColor: "#fafafa",
 	},
 	cardList: {
+		flex: 1,
 		display: "flex",
 		flexWrap: "wrap",
 		justifyContent: "space-evenly",

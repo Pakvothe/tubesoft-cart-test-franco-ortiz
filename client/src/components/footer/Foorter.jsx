@@ -10,7 +10,7 @@ const Footer = () => {
 		<footer className={classes.navbarContainer}>
 			{path !== "/history" ? (
 				<Link to="/history">
-					<button>Cart Historial</button>
+					<button>Cart History</button>
 				</Link>
 			) : (
 				<Link to="/">
