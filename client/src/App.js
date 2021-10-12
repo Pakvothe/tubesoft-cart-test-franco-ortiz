@@ -12,7 +12,6 @@ const App = () => {
 	return (
 		<>
 			<ToastContainer limit={3} />
-
 			<Route exact path="/">
 				<HomePage />
 			</Route>

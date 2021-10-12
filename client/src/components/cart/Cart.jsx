@@ -3,6 +3,10 @@ import { makeStyles } from "@mui/styles";
 import Navbar from "../navbar";
 import { useHistory, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+import axios from "axios";
 import {
 	addToCart,
 	removeFromCart,
@@ -10,10 +14,6 @@ import {
 	emptyCart,
 	getAllProduct,
 } from "../../redux/actions";
-import { toast } from "react-toastify";
-import Swal from "sweetalert2";
-import withReactContent from "sweetalert2-react-content";
-import axios from "axios";
 
 const Cart = () => {
 	const dispatch = useDispatch();
@@ -91,7 +91,20 @@ const Cart = () => {
 	};
 	const handleProcced = () => {
 		if (cart.length > 0) {
-			saveHistory(date);
+			MySwal.fire({
+				title: "Are you sure?",
+				text: "The shopping cart will be saved in the history.",
+				icon: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#36d982",
+				iconColor: "#e67ad0",
+				cancelButtonColor: "#d33",
+				confirmButtonText: "Procced",
+			}).then((result) => {
+				if (result.isConfirmed) {
+					saveHistory(date);
+				}
+			});
 		} else {
 			toast.error("Error, the cart is empty!", {
 				position: "top-center",

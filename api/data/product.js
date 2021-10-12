@@ -85,8 +85,8 @@ const products = [
 		name: "Forza Horizon 4",
 		price: 3999.0,
 		img: "https://store-images.s-microsoft.com/image/apps.20615.14094456225993959.2d017079-463a-4bd6-ac7a-2fb4f65673e9.0faeefd3-4ad9-4634-98df-75b9aeb92d48",
-		stock: 200,
-		totalStock: 200,
+		stock: 0,
+		totalStock: 0,
 		rating: 3,
 	},
 	{
@@ -103,8 +103,8 @@ const products = [
 		name: "Los Sims 4",
 		price: 2499.0,
 		img: "https://i.imgur.com/BBkU1kM.jpg",
-		stock: 5390,
-		totalStock: 5390,
+		stock: 0,
+		totalStock: 0,
 		rating: 2,
 	},
 ];
