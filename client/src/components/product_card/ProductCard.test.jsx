@@ -3,7 +3,6 @@ import { Provider } from "react-redux";
 import { render, fireEvent, cleanup, screen } from "@testing-library/react";
 import axios from "axios";
 import { BrowserRouter as Router } from "react-router-dom";
-import "@testing-library/jest-dom";
 import ProductCard from "./ProductCard";
 import store from "../../redux/store";
 

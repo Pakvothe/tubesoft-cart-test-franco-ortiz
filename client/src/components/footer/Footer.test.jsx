@@ -28,9 +28,4 @@ describe("<Footer />", () => {
 		const button = component.getByLabelText("history-button");
 		expect(button).toHaveAttribute("href", "/history");
 	});
-
-	// test("Clicking back button must work", () => {
-	// 	const button = component.getByLabelText("back-button");
-	// 	expect(button).toHaveAttribute("href", "/");
-	// });
 });

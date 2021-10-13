@@ -1,9 +1,7 @@
 import React from "react";
 import { Provider } from "react-redux";
 import { render, screen, fireEvent } from "@testing-library/react";
-import axios from "axios";
 import { BrowserRouter as Router } from "react-router-dom";
-import "@testing-library/jest-dom";
 import Cart from "./Cart";
 import store from "../../redux/store";
 
