@@ -2,6 +2,7 @@
 	"name": "tubesoft-challenge",
 	"version": "1.0.0",
 	"private": true,
+	"license": "MIT",
 	"dependencies": {
 		"@mui/styles": "^5.0.1",
 		"axios": "^0.22.0",
