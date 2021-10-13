@@ -1,5 +1,5 @@
 import "./App.css";
-import { Route } from "react-router-dom";
+import { Route, Redirect, Switch } from "react-router-dom";
 
 //components ==>
 import HomePage from "./components/homepage";
@@ -12,15 +12,18 @@ const App = () => {
 	return (
 		<div data-testid="application-renders">
 			<ToastContainer limit={3} />
-			<Route exact path="/">
-				<HomePage />
-			</Route>
-			<Route exact path="/cart">
-				<Cart />
-			</Route>
-			<Route exact path="/history">
-				<CartList />
-			</Route>
+			<Switch>
+				<Route exact path="/">
+					<HomePage />
+				</Route>
+				<Route exact path="/cart">
+					<Cart />
+				</Route>
+				<Route exact path="/history">
+					<CartList />
+				</Route>
+				<Route render={() => <Redirect to="/" />} />
+			</Switch>
 		</div>
 	);
 };

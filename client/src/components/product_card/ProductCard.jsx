@@ -11,6 +11,7 @@ const ProductCard = ({ props }) => {
 	const classes = useStyles();
 	const dispatch = useDispatch();
 	const history = useHistory();
+	const numberFormat = new Intl.NumberFormat("es-CL", { currency: "CLP", style: "currency" });
 
 	const starSetter = () => {
 		let stars = [];
@@ -35,12 +36,12 @@ const ProductCard = ({ props }) => {
 	return (
 		<div className={stock === 0 ? classes.Opacity : undefined} data-testid="product-card">
 			<div className={classes.Container}>
-				<img src={img} alt={`${id} cardImage`} className={classes.CardImage} />
+				<img src={img} alt={`${id}: cardImage`} className={classes.CardImage} />
 				<div className={classes.ProductInfo}>
 					<h3>{name}</h3>
 					<div className={classes.starContainer}>{starSetter()}</div>
 					<div>
-						<p className={classes.priceText}>$ {price}</p>
+						<p className={classes.priceText}>{numberFormat.format(price)}</p>
 						{stock > 0 ? (
 							<label className={classes.succedLabel}>
 								<label />
@@ -90,7 +91,7 @@ const useStyles = makeStyles({
 	},
 	CardImage: {
 		width: "100%",
-		height: "50%",
+		minHeight: "50%",
 		objectFit: "fill",
 	},
 	ProductInfo: {

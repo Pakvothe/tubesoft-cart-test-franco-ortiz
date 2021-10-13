@@ -23,6 +23,7 @@ const Cart = () => {
 	const cart = useSelector((state) => state.cart);
 	const products = useSelector((state) => state.products);
 	const [date, setDate] = useState("");
+	const numberFormat = new Intl.NumberFormat("es-CL", { currency: "CLP", style: "currency" });
 	let total = 0;
 	cart.forEach((prod) => (total = prod.price * prod.qty + total));
 
@@ -158,7 +159,7 @@ const Cart = () => {
 												</button>
 											)}
 										</p>
-										<p>$ {product.price}</p>
+										<p>{numberFormat.format(product.price)}</p>
 									</div>
 								</div>
 								{index !== arrayIndex && <div className={classes.divider} />}
@@ -170,7 +171,7 @@ const Cart = () => {
 							<p>Total</p>
 						</div>
 						<div>
-							<p>$ {total}</p>
+							<p>{numberFormat.format(total)}</p>
 						</div>
 					</div>
 				</div>
