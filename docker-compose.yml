@@ -4,7 +4,7 @@ services:
    postgres:
       image: "postgres:latest"
       ports:
-         - "5433:5433"
+         - "5555:5555"
       environment:
          POSTGRES_DB: "tubesoft-challenge"
          POSTGRES_USER: "postgres"
@@ -22,7 +22,7 @@ services:
       ports:
          - "3001:3001"
       environment:
-         DB_PORT: "5433"
+         DB_PORT: "5555"
          DB_HOST: "postgres"
          DB_NAME: "tubesoft-challenge"
          DB_USER: "postgres"

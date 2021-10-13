@@ -2,7 +2,6 @@ FROM node:alpine
 WORKDIR /api
 COPY ./package.json package.json
 COPY . .
-RUN npm install -g sequelize-cli
 RUN npm install
 RUN npx sequelize-cli db:migrate
 RUN npx sequelize-cli db:seed:all
