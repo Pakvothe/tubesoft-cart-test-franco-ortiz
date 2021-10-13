@@ -33,7 +33,7 @@ const ProductCard = ({ props }) => {
 		});
 	};
 	return (
-		<div className={stock === 0 && classes.Opacity}>
+		<div className={stock === 0 ? classes.Opacity : undefined} data-testid="product-card">
 			<div className={classes.Container}>
 				<img src={img} alt={`${id} cardImage`} className={classes.CardImage} />
 				<div className={classes.ProductInfo}>

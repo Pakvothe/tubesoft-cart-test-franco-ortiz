@@ -1,2 +1,2 @@
-import Footer from "./Foorter";
+import Footer from "./Footer";
 export default Footer;

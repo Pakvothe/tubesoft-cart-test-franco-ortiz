@@ -10,7 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
 	return (
-		<>
+		<div data-testid="application-renders">
 			<ToastContainer limit={3} />
 			<Route exact path="/">
 				<HomePage />
@@ -21,7 +21,7 @@ const App = () => {
 			<Route exact path="/history">
 				<CartList />
 			</Route>
-		</>
+		</div>
 	);
 };
 

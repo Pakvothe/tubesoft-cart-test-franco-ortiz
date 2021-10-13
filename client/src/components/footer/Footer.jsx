@@ -9,11 +9,11 @@ const Footer = () => {
 	return (
 		<footer className={classes.navbarContainer}>
 			{path !== "/history" ? (
-				<Link to="/history">
+				<Link aria-label="history-button" to="/history">
 					<button>Cart History</button>
 				</Link>
 			) : (
-				<Link to="/">
+				<Link aria-label="back-button" to="/">
 					<button>Back to shopping</button>
 				</Link>
 			)}

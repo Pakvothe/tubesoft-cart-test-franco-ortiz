@@ -23,7 +23,6 @@ const Cart = () => {
 	const cart = useSelector((state) => state.cart);
 	const products = useSelector((state) => state.products);
 	const [date, setDate] = useState("");
-
 	let total = 0;
 	cart.forEach((prod) => (total = prod.price * prod.qty + total));
 
