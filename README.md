@@ -3,7 +3,7 @@
 ## Instalación
 
 Necesitarás tener [Docker](https://docs.docker.com/get-docker/)
-y [Docker-Compose](https://docs.docker.com/compose/install/) instalads en tu PC
+y [Docker-Compose](https://docs.docker.com/compose/install/) instalados en tu PC
 
 Clonar el [repositorio](https://github.com/Pakvothe/tubesoft-cart-test-franco-ortiz).
 
