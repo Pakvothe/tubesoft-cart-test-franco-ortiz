@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"license": "MIT",
 	"scripts": {
-		"test": "jest --detectOpenHandles",
+		"test": "jest --silent",
 		"start": "npm run migrate && npm run seed && nodemon -L ",
 		"migrate": "npx sequelize-cli db:migrate",
 		"seed": "npx sequelize-cli db:seed:all"
