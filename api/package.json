@@ -6,9 +6,10 @@
 	"license": "MIT",
 	"scripts": {
 		"test": "jest --silent",
-		"start": "npm run migrate && npm run seed && nodemon -L ",
+		"start": "npm run migrate && npm run unseed && npm run seed && nodemon -L ",
 		"migrate": "npx sequelize-cli db:migrate",
-		"seed": "npx sequelize-cli db:seed:all"
+		"seed": "npx sequelize-cli db:seed:all",
+		"unseed": "npx sequelize-cli db:seed:undo:all"
 	},
 	"dependencies": {
 		"cors": "^2.8.5",
