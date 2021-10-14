@@ -2,8 +2,8 @@
 
 const { Cart, Product, Prod_Cart } = require("../models/index");
 
-exports.post = (req, res) => {
-	const { cartProducts, createDate } = req.body;
+exports.post = async (req, res) => {
+	const { cartProducts, createDate } = await req.body;
 	return Cart.create({ cartProducts, createDate })
 		.then((result) => res.status(201).json(result))
 		.catch((err) => res.status(400).json(err));
@@ -20,8 +20,8 @@ exports.list = (req, res, next) => {
 		});
 };
 
-exports.delete = (req, res, next) => {
-	let { id } = req.params;
+exports.delete = async (req, res, next) => {
+	let { id } = await req.params;
 	return Cart.destroy({
 		where: {
 			id,
