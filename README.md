@@ -31,6 +31,17 @@ Backend:
 
 > http://localhost:3001/
 
+</br>
+
+> En el caso de tener en la pc una versión de node que sea 17 o superior hay que agregar al archivo docker-compose.yml de main lo siguiente debajo de "ports":
+
+```bash
+ environment:
+        NODE_OPTIONS: --openssl-legacy-provider
+```
+
+> Esto es solo por problemas de compatibilidad, si funciona no hay que modificar nada.
+
 ## Ejecutar los test
 
 Frontend:
